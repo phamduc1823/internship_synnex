@@ -9,22 +9,46 @@ public class Array {
 //        sortArray(arr, 1);
 //        addArray(arr, 5);
 //        removeArray(arr, 3);
-        bubbleSort(arr);
+//        bubbleSort(arr);
+        selectionSort(arr);
+    }
+
+
+    //Sắp xếp chọn
+    public static void selectionSort(Integer[] arr) {
+        int arrLength = arr.length;
+
+        //{2, 1, 4, 3}
+        for (int i = 0; i < arrLength - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < arrLength; j++) {
+                if(arr[j] < arr[minIndex]){
+                    minIndex = j;
+
+                    int temp = arr[minIndex];
+                    arr[minIndex] = arr[i];
+                    arr[i] = temp;
+                }
+            }
+        }
+        System.out.println(Arrays.toString(arr));
     }
 
     //Sắp xếp kiểu nổi bọt
     public static void bubbleSort(Integer[] arr){
         Integer arrLength = arr.length;
-        int temp;
+        int temp; // Biến tạm
         boolean is_sorted;
 
         for (int i = 0; i < arrLength; i++) {
+
             is_sorted = true;
 
+            //Vòng lặp từ phần tử thứ 2 đến cuối
             for (int j = 1; j < (arrLength - i); j++) {
-                if (arr[j - 1] > arr[j]) {
-                    temp = arr[j - 1];
-                    arr[j - 1] = arr[j];
+                if (arr[i] > arr[j]) {
+                    temp = arr[i];
+                    arr[i] = arr[j];
                     arr[j] = temp;
                     is_sorted = false;
                 }
@@ -33,7 +57,6 @@ public class Array {
             if (is_sorted) break;
 
             System.out.println(Arrays.toString(arr));
-
         }
     }
 
