@@ -9,7 +9,32 @@ public class Array {
 //        sortArray(arr, 1);
 //        addArray(arr, 5);
 //        removeArray(arr, 3);
+        bubbleSort(arr);
+    }
 
+    //Sắp xếp kiểu nổi bọt
+    public static void bubbleSort(Integer[] arr){
+        Integer arrLength = arr.length;
+        int temp;
+        boolean is_sorted;
+
+        for (int i = 0; i < arrLength; i++) {
+            is_sorted = true;
+
+            for (int j = 1; j < (arrLength - i); j++) {
+                if (arr[j - 1] > arr[j]) {
+                    temp = arr[j - 1];
+                    arr[j - 1] = arr[j];
+                    arr[j] = temp;
+                    is_sorted = false;
+                }
+            }
+
+            if (is_sorted) break;
+
+            System.out.println(Arrays.toString(arr));
+
+        }
     }
 
     //Thêm phần tử vào mảng
