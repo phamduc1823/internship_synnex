@@ -5,6 +5,7 @@ import java.util.Map;
 interface NotificationService {
     void sendNotification(String recipient, String message);
 }
+
 abstract class BaseNotificationService implements NotificationService {
     private Map<String, String> history = new HashMap<>();
 
