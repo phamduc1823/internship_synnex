@@ -9,36 +9,54 @@ interface NotificationService {
 abstract class BaseNotificationService implements NotificationService {
     private Map<String, String> history = new HashMap<>();
 
-    public void addToHistory(String recipient, String message) {
-        history.put(recipient, message);
-    }
-
     public Map<String, String> getHistory() {
         return history;
     }
+
+    public void setHistory(String recipient, String message) {
+        history.put(recipient, message);
+    }
+
+    @Override
+    public void sendNotification(String recipient, String message) {
+        //store request
+        storeRequest(recipient, message);
+        //send notification
+        sendNotificationInternal(recipient, message);
+        //store result
+        storeResponse(recipient, message);
+    }
+
+    public void storeRequest(String recipient, String message) {
+        setHistory(recipient, message);
+    }
+
+    public void storeResponse(String recipient, String message) {
+        setHistory(recipient, message);
+    }
+
+    protected abstract void sendNotificationInternal(String recipient, String message);
+
 }
 
 class EmailNotificationService extends BaseNotificationService {
     @Override
-    public void sendNotification(String recipient, String message) {
+    public void sendNotificationInternal(String recipient, String message) {
         System.out.println("Gui email toi " + recipient + ": " + message);
-        addToHistory(recipient, message);
     }
 }
 
 class SmsNotificationService extends BaseNotificationService {
     @Override
-    public void sendNotification(String recipient, String message) {
+    public void sendNotificationInternal(String recipient, String message) {
         System.out.println("Gui SMS toi " + recipient + ": " + message);
-        addToHistory(recipient, message);
     }
 }
 
 class WhatsAppNotificationService extends BaseNotificationService {
     @Override
-    public void sendNotification(String recipient, String message) {
+    public void sendNotificationInternal(String recipient, String message) {
         System.out.println("Gui WhatsApp toi " + recipient + ": " + message);
-        addToHistory(recipient, message);
     }
 }
 
