@@ -59,7 +59,7 @@ public class Input {
     }
 
     public static void main(String[] args) throws IOException {
-//        Scanner();
+        Scanner();
 //        BufferedRender();
 //        Console();
     }

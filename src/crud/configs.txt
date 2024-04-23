@@ -1,0 +1,6 @@
+DB_CONNECTION=mysql
+SERVER_NAME=localhost
+PORT_NUMBER=3306
+DB_NAME=student_management
+DB_USER=root
+DB_PASSWORD=
