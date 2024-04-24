@@ -25,12 +25,22 @@ public class ConnectData {
 
         Map<String, String> config = new HashMap<>();
 
+        //Doc file
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         String line;
+        //reader.readLine() co dang
+        //[DB_CONNECTION=mysql]
 
         while ((line = reader.readLine()) != null) {
+
+            //Se co dang
+            // [DB_CONNECTION, mysql]
+            //[SERVER_NAME, localhost]
             String[] parts = line.split("=");
+
+            //Kiem tra neu co 2 phan tu thi set Key va Value
             if (parts.length == 2) {
+                //add cap Key - value khi bo khoang trong
                 config.put(parts[0].trim(), parts[1].trim());
             }
         }
