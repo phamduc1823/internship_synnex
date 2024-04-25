@@ -21,7 +21,7 @@ public class StudentDAO {
     public List<Student> getAllStudent(String search) throws Exception {
         search = search == null ? "" : search;
         List<Student> list = new ArrayList<>();
-        String query = "SELECT * FROM student WHERE name LIKE ?";
+        String query = "SELECT * FROM student WHERE name LIKE ? ORDER BY id DESC LIMIT 5";
 
         try {
             ps = this.psTemp(query);
