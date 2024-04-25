@@ -6,11 +6,12 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
-public class RandomNumber extends Thread {
+public class RandomNumberThread extends Thread {
     /*
     * Viết 1 chương trình chạy real-time, ghi các số nguyên random ra file output.txt.
     * Dừng chương trình khi gõ lệnh stop trên cửa sổ chương trình.
     */
+    private static boolean flag = true;
 
     @Override
     public void run() {
@@ -24,7 +25,7 @@ public class RandomNumber extends Thread {
         }
         Random rand = new Random();
 
-        while (true){
+        while (flag){
             int number = rand.nextInt(100);
 
             try {
@@ -37,17 +38,17 @@ public class RandomNumber extends Thread {
     }
 
     public static void main(String[] args) throws IOException {
-        RandomNumber rn = new RandomNumber();
+        RandomNumberThread rn = new RandomNumberThread();
         rn.start();
         Scanner sc = new Scanner(System.in);
 
-        while (true){
+        while (flag){
             System.out.print("Nhap 'stop' de dung chuong trinh: ");
             String text = sc.next();
 
             if (text.equals("stop")){
                 System.out.println("Da dung chuong trinh!");
-                System.exit(0);
+                flag = false;
             }
         }
     }
