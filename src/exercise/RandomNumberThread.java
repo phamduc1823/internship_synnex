@@ -11,7 +11,9 @@ public class RandomNumberThread extends Thread {
     * Viết 1 chương trình chạy real-time, ghi các số nguyên random ra file output.txt.
     * Dừng chương trình khi gõ lệnh stop trên cửa sổ chương trình.
     */
-    private static boolean flag = true;
+    private boolean flag = true;
+
+
 
     @Override
     public void run() {
@@ -37,7 +39,7 @@ public class RandomNumberThread extends Thread {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public void main() throws IOException {
         RandomNumberThread rn = new RandomNumberThread();
         rn.start();
         Scanner sc = new Scanner(System.in);
@@ -47,8 +49,11 @@ public class RandomNumberThread extends Thread {
             String text = sc.next();
 
             if (text.equals("stop")){
+                synchronized (rn) {
+                    rn.flag = false;
+                }
                 System.out.println("Da dung chuong trinh!");
-                flag = false;
+                break;
             }
         }
     }
