@@ -13,7 +13,13 @@ public class RandomNumberThread extends Thread {
     */
     private boolean flag = true;
 
+    public boolean isFlag() {
+        return flag;
+    }
 
+    public synchronized void setFlag(boolean flag) {
+        this.flag = flag;
+    }
 
     @Override
     public void run() {
@@ -49,9 +55,7 @@ public class RandomNumberThread extends Thread {
             String text = sc.next();
 
             if (text.equals("stop")){
-                synchronized (rn) {
-                    rn.flag = false;
-                }
+                setFlag(false);
                 System.out.println("Da dung chuong trinh!");
                 break;
             }
