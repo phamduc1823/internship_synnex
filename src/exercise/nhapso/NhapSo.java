@@ -1,4 +1,4 @@
-package exercise;
+package exercise.nhapso;
 
 import java.util.Scanner;
 

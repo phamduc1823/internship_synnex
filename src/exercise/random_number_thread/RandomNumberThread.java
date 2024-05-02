@@ -1,4 +1,4 @@
-package exercise;
+package exercise.random_number_thread;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -23,7 +23,7 @@ public class RandomNumberThread extends Thread {
 
     @Override
     public void run() {
-        String path = "src/exercise/output.txt";
+        String path = "src/exercise/random_number_thread/output.txt";
         FileOutputStream fos = null;
 
         try {

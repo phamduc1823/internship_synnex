@@ -1,4 +1,4 @@
-package exercise;
+package exercise.sen_message_thread;
 
 import java.util.LinkedList;
 import java.util.Queue;

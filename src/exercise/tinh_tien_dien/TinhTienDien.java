@@ -1,4 +1,4 @@
-package exercise;
+package exercise.tinh_tien_dien;
 
 import java.util.Scanner;
 
