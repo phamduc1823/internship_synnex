@@ -8,28 +8,18 @@ import java.util.Queue;
 
 public class Server {
     public static void main(String[] args) throws IOException {
+        Queue<Commands> queue = new LinkedList<>();
+        for (int i = 0; i < 5; i++) {
+            Worker worker = new Worker(queue);
+            worker.start();
+        }
         ServerSocket serverSocket = new ServerSocket(2211);
-        Object lock = new Object();
-        Queue<Socket> queue = new LinkedList<>();
-
-        ServerThread serverThread = new ServerThread(serverSocket, lock, queue);
-        serverThread.start();
-
-        System.out.println("Server is active!");
-
+        System.out.println("Waiting for client connection...");
         while (true) {
-            synchronized (lock) {
-                while (queue.isEmpty()) {
-                    try {
-                        lock.wait();
-                        System.out.println("Queue is empty! wait client connect ...");
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                Socket socket = queue.poll();
-                new ServerProcess(socket).start();
-            }
+            //Chap nhan ket noi cua client
+            Socket socket = serverSocket.accept();
+            new ServerProcess(socket, queue).start();
+            System.out.println("Client " + socket.getInetAddress() + " connected!");
         }
     }
 }
